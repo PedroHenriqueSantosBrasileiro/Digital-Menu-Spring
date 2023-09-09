@@ -8,6 +8,6 @@ package com.digitalMenu.dto;
  *
  * @author pedro
  */
-public record InserirCategoriaDto(String nome) {
+public record DadosInserirCategoria(String nome) {
 
 }
