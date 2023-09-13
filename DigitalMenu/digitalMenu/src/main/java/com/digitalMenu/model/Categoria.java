@@ -15,7 +15,9 @@ public class Categoria {
     private Integer id;
     
     private String nome;
-
+    
+    private boolean status;
+    
     public Categoria(DadosInserirCategoria dados) {
         this.nome = dados.nome();
     }
@@ -37,6 +39,14 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
     
