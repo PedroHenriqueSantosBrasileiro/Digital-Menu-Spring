@@ -1,6 +1,7 @@
 
 package com.digitalMenu.model;
 
+import com.digitalMenu.dto.DadosCategoria;
 import com.digitalMenu.dto.DadosInserirCategoria;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,6 +50,11 @@ public class Categoria {
         this.status = status;
     }
     
-    
+    public void atualizar(DadosCategoria dados){
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        
+    }
     
 }
