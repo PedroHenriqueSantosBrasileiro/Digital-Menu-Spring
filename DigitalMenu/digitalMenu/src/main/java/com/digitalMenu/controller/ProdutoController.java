@@ -3,19 +3,16 @@ package com.digitalMenu.controller;
 import com.digitalMenu.Service.ProdutoService;
 import com.digitalMenu.dto.DadosAtualizaProduto;
 import com.digitalMenu.dto.DadosCadastroProduto;
+import com.digitalMenu.dto.DadosDetalhamentoProduto;
 import com.digitalMenu.dto.DadosListagemProdutos;
+import com.digitalMenu.model.Produto;
 import com.digitalMenu.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/produto")
@@ -42,12 +39,22 @@ public class ProdutoController {
 
         return ResponseEntity.ok(dados);
     }
-    
+
+    @GetMapping("/{id}")
+    public ResponseEntity detalhamentoProduto(@PathVariable Integer id){
+        Produto produto = repository.getReferenceById(id);
+        DadosDetalhamentoProduto dados = new DadosDetalhamentoProduto(produto);
+        return ResponseEntity.ok(dados);
+    }
+
+
     @PutMapping
     public ResponseEntity atualizarProduto(@RequestBody DadosAtualizaProduto dados){
         produtoService.atualizar(dados);
         
         return ResponseEntity.ok().build();
     }
+
+
     
 }
