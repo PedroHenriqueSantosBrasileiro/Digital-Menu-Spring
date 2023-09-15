@@ -55,6 +55,16 @@ public class ProdutoController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluirProduto(@PathVariable Integer id){
+        Produto produto = repository.getReferenceById(id);
+        produto.setStatus(false);
+        repository.save(produto);
+
+        return ResponseEntity.noContent().build();
+
+    }
+
 
     
 }
