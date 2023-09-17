@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class MesaController {
     @Autowired
     private MesaRepository repository;
+
     @PostMapping
-    public ResponseEntity cadastrarMesa(@RequestBody DadosCadastroMesa dados){
+    public ResponseEntity cadastrarMesa(@RequestBody DadosCadastroMesa dados) {
         Mesa mesa = new Mesa(dados);
 
         repository.save(mesa);
@@ -25,10 +26,22 @@ public class MesaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Mesa>> listarMesas(@PageableDefault(size = 10, sort = {"numeroMesa"}) Pageable paginacao){
-         var page = repository.findAll(paginacao);
+    public ResponseEntity<Page<Mesa>> listarMesas(@PageableDefault(size = 10, sort = {"numeroMesa"}) Pageable paginacao) {
+        var page = repository.findAll(paginacao);
 
-         return ResponseEntity.ok(page);
+        return ResponseEntity.ok(page);
+
+    }
+
+    @DeleteMapping("/{numeroMesa}")
+    public ResponseEntity excluirMesa(@PathVariable Integer numeroMesa) {
+
+        Mesa mesa = repository.getReferenceById(numeroMesa);
+        mesa.setStatus(false);
+        repository.save(mesa);
+        
+        return ResponseEntity.noContent().build();
+
 
     }
 }
