@@ -3,10 +3,7 @@ package com.digitalMenu.model;
 
 import com.digitalMenu.dto.DadosCategoria;
 import com.digitalMenu.dto.DadosInserirCategoria;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Categoria {
@@ -21,6 +18,7 @@ public class Categoria {
     
     public Categoria(DadosInserirCategoria dados) {
         this.nome = dados.nome();
+        this.status = true;
     }
 
     public Categoria() {

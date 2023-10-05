@@ -1,11 +1,7 @@
 package com.digitalMenu.model;
 
 import com.digitalMenu.dto.DadosCadastroProduto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Produto {
@@ -23,6 +19,7 @@ public class Produto {
     private boolean status;
 
     @ManyToOne
+    @JoinColumn(name = "idCategoria")
     private Categoria categoria;
 
     public Produto(String nome, String descricao, double preco, boolean status, Categoria categoria) {

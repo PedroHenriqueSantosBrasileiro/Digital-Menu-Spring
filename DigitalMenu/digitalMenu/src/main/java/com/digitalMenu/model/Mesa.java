@@ -1,15 +1,13 @@
 package com.digitalMenu.model;
 
 import com.digitalMenu.dto.DadosCadastroMesa;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Mesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer numeroMesa;
 
     private boolean status;
